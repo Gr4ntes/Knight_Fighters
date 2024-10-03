@@ -30,21 +30,25 @@ public class Enemy_Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckForPlayer();
-        if (attackCooldownTimer > 0)
+        if (enemyState != EnemyState.Knockback)
         {
-            attackCooldownTimer -= Time.deltaTime;
-        }
+            CheckForPlayer();
+            if (attackCooldownTimer > 0)
+            {
+                attackCooldownTimer -= Time.deltaTime;
+            }
         
         
-        if (enemyState == EnemyState.Chasing)
-        {
-            Chase();
+            if (enemyState == EnemyState.Chasing)
+            {
+                Chase();
+            }
+            else if (enemyState == EnemyState.Attacking)
+            {
+                rb.velocity = Vector2.zero;
+            }
         }
-        else if (enemyState == EnemyState.Attacking)
-        {
-            rb.velocity = Vector2.zero;
-        }
+        
     }
 
     void Chase()
@@ -89,7 +93,7 @@ public class Enemy_Movement : MonoBehaviour
         }  
     }
 
-    void ChangeState(EnemyState newState)
+    public void ChangeState(EnemyState newState)
     {
         // Exit the current animation
         if (enemyState == EnemyState.Idle)
@@ -123,4 +127,5 @@ public enum EnemyState
     Idle,
     Chasing,
     Attacking,
+    Knockback,
 }

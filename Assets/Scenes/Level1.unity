@@ -2065,6 +2065,7 @@ GameObject:
   - component: {fileID: 972134871}
   - component: {fileID: 972134872}
   - component: {fileID: 972134873}
+  - component: {fileID: 972134874}
   m_Layer: 7
   m_Name: Enemy_Torch
   m_TagString: Untagged
@@ -2313,6 +2314,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 5
   maxHealth: 5
+--- !u!114 &972134874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972134864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8b096d41058664fb2ecef61af9035c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1068354843
 GameObject:
   m_ObjectHideFlags: 0
@@ -2955,13 +2968,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPoint: {fileID: 1803527100}
-  weaponRange: 0.7
+  weaponRange: 1
+  knockbackForce: 10
+  knockbackTime: 0.15
+  stunTime: 0.3
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
   damage: 1
   anim: {fileID: 1415560566}
-  cooldown: 0.5
+  cooldown: 1
 --- !u!1 &1673254020
 GameObject:
   m_ObjectHideFlags: 0
