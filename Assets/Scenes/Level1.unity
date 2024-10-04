@@ -1194,6 +1194,16 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+  - first: {x: 4, y: 23, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 14
+      m_TileSpriteIndex: 14
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   - first: {x: 15, y: 23, z: 0}
     second:
       serializedVersion: 2
@@ -1254,7 +1264,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 27dd7852cc7550940ab76d0d02add8ae, type: 2}
   - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: 01fe9639f80597c4ca1b402cd46d7e0d, type: 2}
-  - m_RefCount: 19
+  - m_RefCount: 20
     m_Data: {fileID: 11400000, guid: 4c2351f40ceb3e349b21d999d12a0270, type: 2}
   - m_RefCount: 13
     m_Data: {fileID: 11400000, guid: c6d68f553169aa84daacfd82ef924132, type: 2}
@@ -1289,14 +1299,14 @@ Tilemap:
     m_Data: {fileID: 628886009, guid: f3e3315e5e1f3c844bfaacd858405cd9, type: 3}
   - m_RefCount: 2
     m_Data: {fileID: 863768720, guid: f3e3315e5e1f3c844bfaacd858405cd9, type: 3}
-  - m_RefCount: 19
+  - m_RefCount: 20
     m_Data: {fileID: -258392232, guid: f3e3315e5e1f3c844bfaacd858405cd9, type: 3}
   - m_RefCount: 13
     m_Data: {fileID: -1398531949, guid: f3e3315e5e1f3c844bfaacd858405cd9, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 1396117264, guid: f3e3315e5e1f3c844bfaacd858405cd9, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 101
+  - m_RefCount: 102
     m_Data:
       e00: 1
       e01: 0
@@ -1315,7 +1325,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 101
+  - m_RefCount: 102
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -1486,7 +1496,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3
+  orthographic size: 4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -22646,7 +22656,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1415560565}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 3
+    OrthographicSize: 4
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
