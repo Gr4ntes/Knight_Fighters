@@ -10,6 +10,7 @@ public class Player_Combat : MonoBehaviour
     public float knockbackTime = 0.15f;
     public float stunTime = 0.3f;
     public LayerMask enemyLayer;
+    public LayerMask sheepLayer;
     public int damage = 1;
     public Animator anim;
 
@@ -37,6 +38,7 @@ public class Player_Combat : MonoBehaviour
 
     public void DealDamage()
     {
+        // checking for enemies
         Collider2D[] enemies = Physics2D.OverlapCircleAll(attackPoint.position, weaponRange, enemyLayer);
 
         if (enemies.Length > 0)
@@ -47,6 +49,18 @@ public class Player_Combat : MonoBehaviour
                 enemy.GetComponent<Enemy_Knockback>().Knockback(transform, knockbackForce, knockbackTime, stunTime);
             }
         }
+
+        // checking for sheeps
+        Collider2D[] sheeps = Physics2D.OverlapCircleAll(attackPoint.position, weaponRange, sheepLayer);
+        
+        if (sheeps.Length > 0)
+        {
+            foreach (Collider2D sheep in sheeps)
+            {
+                sheep.GetComponent<Sheep_Dead>().Dead();
+            }
+        }
+
     }
 
     public void FinishAttacking()

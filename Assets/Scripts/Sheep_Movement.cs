@@ -7,8 +7,11 @@ public class Sheep_Movement : MonoBehaviour
     public float speed;
     private int facingDirection = -1;
     private SheepState sheepState;
+    private bool deadAnimFinished = false;
     
+    public int healthRestore = 5;
     public float playerDetectRange = 3;
+    public float playerCollideRange = .5f;
     public Transform detectionPoint;
     public LayerMask playerLayer;
 
@@ -27,15 +30,11 @@ public class Sheep_Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (sheepState != SheepState.Dead)
+        CheckForPlayer();
+
+        if (sheepState == SheepState.Running)
         {
-            CheckForPlayer();
-
-
-            if (sheepState == SheepState.Running)
-            {
-                Run();
-            }
+            Run();
         }
 
     }
@@ -47,7 +46,19 @@ public class Sheep_Movement : MonoBehaviour
         if (hits.Length > 0)
         {
             player = hits[0].transform;
-            ChangeState(SheepState.Running);
+            if (sheepState == SheepState.Dead)
+            {
+                print(Vector2.Distance(transform.position, player.position));
+                if (Vector2.Distance(transform.position, player.position) < playerCollideRange && deadAnimFinished)
+                {
+                    player.GetComponent<PlayerHealth>().ChangeHealth(healthRestore);
+                    Destroy(gameObject);
+                }
+            }
+            else
+            {
+                ChangeState(SheepState.Running);
+            }
         }
         else
         {
@@ -73,6 +84,11 @@ public class Sheep_Movement : MonoBehaviour
         transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
     }
 
+    public void DeadAnimationFinished()
+    {
+        deadAnimFinished = true;
+    }
+
     public void ChangeState(SheepState newState)
     {
         // Exit the current animation
@@ -93,6 +109,13 @@ public class Sheep_Movement : MonoBehaviour
         else if (sheepState == SheepState.Dead)
             anim.SetBool("isDead", true);
     }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, playerCollideRange);
+    }
+
 }
 
 public enum SheepState
