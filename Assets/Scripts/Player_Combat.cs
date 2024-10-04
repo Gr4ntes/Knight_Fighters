@@ -41,8 +41,11 @@ public class Player_Combat : MonoBehaviour
 
         if (enemies.Length > 0)
         {
-            enemies[0].GetComponent<Enemy_Health>().ChangeHealth(-damage);
-            enemies[0].GetComponent<Enemy_Knockback>().Knockback(transform, knockbackForce, knockbackTime, stunTime);
+            foreach (Collider2D enemy in enemies)
+            {
+                enemy.GetComponent<Enemy_Health>().ChangeHealth(-damage);
+                enemy.GetComponent<Enemy_Knockback>().Knockback(transform, knockbackForce, knockbackTime, stunTime);
+            }
         }
     }
 
