@@ -48,7 +48,6 @@ public class Sheep_Movement : MonoBehaviour
             player = hits[0].transform;
             if (sheepState == SheepState.Dead)
             {
-                print(Vector2.Distance(transform.position, player.position));
                 if (Vector2.Distance(transform.position, player.position) < playerCollideRange && deadAnimFinished)
                 {
                     player.GetComponent<PlayerHealth>().ChangeHealth(healthRestore);
@@ -60,7 +59,7 @@ public class Sheep_Movement : MonoBehaviour
                 ChangeState(SheepState.Running);
             }
         }
-        else
+        else if (sheepState != SheepState.Dead)
         {
             rb.velocity = Vector2.zero;
             ChangeState(SheepState.Idle);
