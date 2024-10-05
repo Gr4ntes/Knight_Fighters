@@ -25,7 +25,11 @@ public class PlayerMovement : MonoBehaviour
     // FixedUpdate is called 50 times per second
     void FixedUpdate()
     {
-        if (isKnockedBack == false)
+        if (anim.GetBool("isAttacking") == true)
+        {
+            rb.velocity = Vector2.zero;
+        }
+        else if (isKnockedBack == false)
         {
             float horizontal = Input.GetAxis("Horizontal");
             float vertical = Input.GetAxis("Vertical");
