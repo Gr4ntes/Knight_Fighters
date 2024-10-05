@@ -18,6 +18,11 @@ public class PlayerHealth : MonoBehaviour
 
     public void ChangeHealth(int amount)
     {
+        if (amount + currentHealth > maxHealth)
+        {
+            amount = maxHealth - currentHealth;
+        }
+        
         currentHealth += amount;
         healthTextAnim.Play("TextUpdate");
         healthText.text = "HP: " + currentHealth + "/" + maxHealth;
@@ -26,5 +31,6 @@ public class PlayerHealth : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+
     }
 }
