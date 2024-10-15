@@ -14,6 +14,7 @@ public class CSE_CameraZoom : CutsceneElementBase
     public override void Execute()
     {
         vCam = cutsceneHandler.vCam;
+        vCam.Follow = null;
         StartCoroutine(ZoomCamera());
     }
 
