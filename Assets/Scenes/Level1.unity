@@ -1624,6 +1624,7 @@ GameObject:
   - component: {fileID: 590007829}
   - component: {fileID: 590007827}
   - component: {fileID: 590007832}
+  - component: {fileID: 590007833}
   m_Layer: 0
   m_Name: CS_Base
   m_TagString: Untagged
@@ -1731,6 +1732,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   duration: 2
   distanceToMove: {x: 5, y: 2}
+--- !u!114 &590007833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 590007826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc670608d0815884a8ffba2387ea9c96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 2
+  targetSize: 1
+  target: {fileID: 1415560565}
+  offset: {x: 0, y: 1, z: -10}
 --- !u!1 &690632346
 GameObject:
   m_ObjectHideFlags: 0
