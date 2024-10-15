@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &245238688
 RectTransform:
   m_ObjectHideFlags: 0
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 245238687}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -179,8 +179,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'O, by what cruel twist of fate hast I arrived hither? I must henceforth
-    hasten to mine own castle, lest I remain lost in this unknown land.
+  m_text: '
 
 '
   m_isRightToLeft: 0
@@ -1762,6 +1761,7 @@ GameObject:
   - component: {fileID: 590007827}
   - component: {fileID: 590007832}
   - component: {fileID: 590007833}
+  - component: {fileID: 590007834}
   m_Layer: 0
   m_Name: CS_Base
   m_TagString: Untagged
@@ -1881,10 +1881,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc670608d0815884a8ffba2387ea9c96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 2
-  targetSize: 1
+  duration: 1
+  targetSize: 2
   target: {fileID: 1415560565}
-  offset: {x: 0, y: 1, z: -10}
+  offset: {x: 0, y: -1, z: -10}
+--- !u!114 &590007834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 590007826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d8529e07454e1b4fb9a4a081107f6ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0
+  popUpText: {fileID: 245238689}
+  dialogueBox: {fileID: 2051837294}
+  dialogue: O, by what cruel twist of fate hast I arrived hither? I must henceforth
+    hasten to mine own castle, lest I remain lost in this unknown land.
+  anim: {fileID: 2051837298}
 --- !u!1 &690632346
 GameObject:
   m_ObjectHideFlags: 0
@@ -23042,7 +23060,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -23369,14 +23387,14 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1415560565}
+  - {fileID: 704092676}
+  - {fileID: 1262926125}
   - {fileID: 1969289445}
   - {fileID: 2044271686}
   - {fileID: 5494024571145432247}
   - {fileID: 1844737247}
-  - {fileID: 1262926125}
   - {fileID: 1068354846}
   - {fileID: 4174116152646004960}
   - {fileID: 1159155922}
   - {fileID: 1491098983}
   - {fileID: 590007831}
-  - {fileID: 704092676}
