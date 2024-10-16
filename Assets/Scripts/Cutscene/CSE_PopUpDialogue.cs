@@ -27,7 +27,7 @@ public class CSE_PopUpDialogue : CutsceneElementBase
         {
             anim.Play("dialogue_box_disappear");
             popUpText.gameObject.SetActive(false);
-
+            cutsceneHandler.PlayNextElement();
         }
     }
 }

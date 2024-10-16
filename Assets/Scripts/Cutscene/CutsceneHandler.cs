@@ -7,11 +7,20 @@ public class CutsceneHandler : MonoBehaviour
 {
     public Camera cam;
     public CinemachineVirtualCamera vCam;
+    public PlayerMovement playerMovement;
     private CutsceneElementBase[] cutsceneElements;
     private int index = -1;
 
+    public delegate void DialogueStarted();
+    public static DialogueStarted dialogueStarted;
+
+    public delegate void DialogueEnded();
+    public static DialogueStarted dialogueEnded;
+
     public void Start()
     {
+        dialogueStarted += playerMovement.DisableMovement;
+        dialogueEnded += playerMovement.EnableMovement;
         cutsceneElements = GetComponents<CutsceneElementBase>();
     }
 
@@ -24,6 +33,14 @@ public class CutsceneHandler : MonoBehaviour
     public void PlayNextElement()
     {
         index++;
-        ExecuteCurrentElement();
+        print(index);
+        if (index >= cutsceneElements.Length) {
+            CutsceneHandler.dialogueEnded?.Invoke();
+        }
+        else
+        {
+            ExecuteCurrentElement();
+        }
+        
     }
 }

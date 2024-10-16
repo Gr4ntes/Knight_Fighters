@@ -1759,7 +1759,6 @@ GameObject:
   - component: {fileID: 590007830}
   - component: {fileID: 590007829}
   - component: {fileID: 590007827}
-  - component: {fileID: 590007832}
   - component: {fileID: 590007833}
   - component: {fileID: 590007834}
   m_Layer: 0
@@ -1840,6 +1839,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 519420031}
   vCam: {fileID: 2086947082}
+  playerMovement: {fileID: 1415560561}
 --- !u!4 &590007831
 Transform:
   m_ObjectHideFlags: 0
@@ -1855,20 +1855,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &590007832
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 590007826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15b3fd0cd3f2d9343bf3898f6bf48125, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  duration: 2
-  distanceToMove: {x: 5, y: 2}
 --- !u!114 &590007833
 MonoBehaviour:
   m_ObjectHideFlags: 0
