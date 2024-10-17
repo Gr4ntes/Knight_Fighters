@@ -25,7 +25,7 @@ public class PlayerHealth : MonoBehaviour
         
         currentHealth += amount;
         healthTextAnim.Play("TextUpdate");
-        healthText.text = "HP: " + currentHealth + "/" + maxHealth;
+        healthText.text = "HP:" + currentHealth + "/" + maxHealth;
 
         if (currentHealth <= 0)
         {
