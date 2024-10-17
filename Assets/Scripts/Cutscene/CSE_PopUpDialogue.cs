@@ -13,7 +13,7 @@ public class CSE_PopUpDialogue : CutsceneElementBase
 
     private bool isActive = false;
     private bool finishedTyping = false;
-    public float charactersPerSecond = 12;
+    public float charactersPerSecond = 40;
 
     public override void Execute()
     {
