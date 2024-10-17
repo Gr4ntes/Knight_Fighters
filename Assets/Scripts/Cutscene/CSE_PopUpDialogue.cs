@@ -36,7 +36,6 @@ public class CSE_PopUpDialogue : CutsceneElementBase
 
         while (i < chars.Length)
         {
-            print(finishedTyping);
             if (timer < Time.deltaTime)
             {
                 textBuffer += chars[i];
@@ -55,17 +54,20 @@ public class CSE_PopUpDialogue : CutsceneElementBase
 
     private void Update()
     {
-        if (Input.GetButtonDown("Interact") && isActive && finishedTyping)
+        if (Input.GetButtonDown("Interact") && isActive)
         {
-            anim.Play("dialogue_box_disappear");
-            popUpText.gameObject.SetActive(false);
-            cutsceneHandler.PlayNextElement();
-        }
-        else if (Input.GetButtonDown("Interact") && isActive && !finishedTyping)
-        {
-            StopAllCoroutines();
-            finishedTyping = true;
-            popUpText.text = dialogue;
+            if (!finishedTyping)
+            {
+                StopAllCoroutines();
+                finishedTyping = true;
+                popUpText.text = dialogue; 
+            }
+            else
+            {
+                anim.Play("dialogue_box_disappear");
+                popUpText.gameObject.SetActive(false);
+                cutsceneHandler.PlayNextElement();
+            }
         }
     }
 
