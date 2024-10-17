@@ -27,6 +27,7 @@ public class CSE_PopUpDialogue : CutsceneElementBase
 
     IEnumerator TypeTextUncapped(string line)
     {
+        finishedTyping = false;
         float timer = 0;
         float interval = 1 / charactersPerSecond;
         string textBuffer = null;
@@ -35,11 +36,11 @@ public class CSE_PopUpDialogue : CutsceneElementBase
 
         while (i < chars.Length)
         {
+            print(finishedTyping);
             if (timer < Time.deltaTime)
             {
                 textBuffer += chars[i];
                 popUpText.text = textBuffer;
-                print(textBuffer);
                 timer += interval;
                 i++;
             }
