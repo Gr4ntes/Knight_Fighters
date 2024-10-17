@@ -179,19 +179,18 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '
-
-'
+  m_text: O, by what cruel twist of fate hast I arrived hither? I must hasten to
+    mine castle, lest I remain in this unknown land.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4d4aaebff9c023040abc17f5397b998d, type: 2}
+  m_sharedMaterial: {fileID: 5566188803803489640, guid: 4d4aaebff9c023040abc17f5397b998d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281211926
+  m_fontColor: {r: 0.08627451, g: 0.10980393, b: 0.18039216, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -208,8 +207,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 55
-  m_fontSizeBase: 55
+  m_fontSize: 48
+  m_fontSizeBase: 48
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -226,7 +225,7 @@ MonoBehaviour:
   m_charWidthMaxAdj: 0
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
+  m_overflowMode: 4
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
@@ -244,7 +243,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -288.094, y: -106.98889, z: -277.03137, w: -136.4713}
+  m_margin: {x: -101.26245, y: -60.516357, z: -109.68628, w: -111.7616}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1761,6 +1760,7 @@ GameObject:
   - component: {fileID: 590007827}
   - component: {fileID: 590007833}
   - component: {fileID: 590007834}
+  - component: {fileID: 590007835}
   m_Layer: 0
   m_Name: CS_Base
   m_TagString: Untagged
@@ -1839,7 +1839,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 519420031}
   vCam: {fileID: 2086947082}
-  playerMovement: {fileID: 1415560561}
 --- !u!4 &590007831
 Transform:
   m_ObjectHideFlags: 0
@@ -1886,9 +1885,25 @@ MonoBehaviour:
   duration: 0
   popUpText: {fileID: 245238689}
   dialogueBox: {fileID: 2051837294}
-  dialogue: O, by what cruel twist of fate hast I arrived hither? I must henceforth
-    hasten to mine own castle, lest I remain lost in this unknown land.
+  dialogue: O, by what cruel twist of fate hast I arrived hither? I must hasten to
+    mine castle, lest I remain in this unknown land.
   anim: {fileID: 2051837298}
+--- !u!114 &590007835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 590007826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc670608d0815884a8ffba2387ea9c96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 1
+  targetSize: 3
+  target: {fileID: 1415560565}
+  offset: {x: 0, y: 0, z: -10}
 --- !u!1 &690632346
 GameObject:
   m_ObjectHideFlags: 0
@@ -19168,6 +19183,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4
   facingDirection: 1
+  vCam: {fileID: 2086947082}
   rb: {fileID: 1415560562}
   anim: {fileID: 1415560566}
   player_Combat: {fileID: 1415560568}
@@ -23053,7 +23069,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 93ad4c3a92c709745aeeea02313a5409, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d54d43b6f6da4384a8bf426cc637d8f0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

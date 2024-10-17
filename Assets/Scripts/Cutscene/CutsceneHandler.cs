@@ -10,11 +10,11 @@ public class CutsceneHandler : MonoBehaviour
     private CutsceneElementBase[] cutsceneElements;
     private int index = -1;
 
-    public delegate void DialogueStarted();
-    public static DialogueStarted dialogueStarted;
+    public delegate void CutSceneStarted();
+    public static CutSceneStarted cutSceneStarted;
 
-    public delegate void DialogueEnded();
-    public static DialogueStarted dialogueEnded;
+    public delegate void CutSceneEnded();
+    public static CutSceneStarted cutSceneEnded;
 
     public void Start()
     {
@@ -32,7 +32,8 @@ public class CutsceneHandler : MonoBehaviour
         index++;
         print(index);
         if (index >= cutsceneElements.Length) {
-            CutsceneHandler.dialogueEnded?.Invoke();
+            cutSceneEnded?.Invoke();
+            Destroy(gameObject);
         }
         else
         {

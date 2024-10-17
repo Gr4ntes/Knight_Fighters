@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class PlayerMovement : MonoBehaviour
 {
     public float speed = 5;
     public int facingDirection = 1;
+    public CinemachineVirtualCamera vCam;
 
     public Rigidbody2D rb;
     public Animator anim;
@@ -17,8 +19,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        CutsceneHandler.dialogueStarted += DisableMovement;
-        CutsceneHandler.dialogueEnded += EnableMovement;
+        CutsceneHandler.cutSceneStarted += DisableMovement;
+        CutsceneHandler.cutSceneEnded += EnableMovement;
+        CutsceneHandler.cutSceneEnded += setCameraFollow;
     }
     private void Update()
     {
@@ -89,5 +92,10 @@ public class PlayerMovement : MonoBehaviour
     {
         print("Movement enabled");
         isMovementDisabled = false;
+    }
+
+    public void setCameraFollow()
+    {
+        vCam.Follow = gameObject.transform;
     }
 }
