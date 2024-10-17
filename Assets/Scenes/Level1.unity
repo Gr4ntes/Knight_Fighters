@@ -1888,6 +1888,7 @@ MonoBehaviour:
   dialogue: O, by what cruel twist of fate hast I arrived hither? I must hasten to
     mine castle, lest I remain in this unknown land.
   anim: {fileID: 2051837298}
+  charactersPerSecond: 40
 --- !u!114 &590007835
 MonoBehaviour:
   m_ObjectHideFlags: 0
