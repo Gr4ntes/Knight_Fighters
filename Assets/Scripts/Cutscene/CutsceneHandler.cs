@@ -7,7 +7,6 @@ public class CutsceneHandler : MonoBehaviour
 {
     public Camera cam;
     public CinemachineVirtualCamera vCam;
-    public PlayerMovement playerMovement;
     private CutsceneElementBase[] cutsceneElements;
     private int index = -1;
 
@@ -19,8 +18,6 @@ public class CutsceneHandler : MonoBehaviour
 
     public void Start()
     {
-        dialogueStarted += playerMovement.DisableMovement;
-        dialogueEnded += playerMovement.EnableMovement;
         cutsceneElements = GetComponents<CutsceneElementBase>();
     }
 

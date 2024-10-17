@@ -15,6 +15,11 @@ public class PlayerMovement : MonoBehaviour
 
     public Player_Combat player_Combat;
 
+    private void Start()
+    {
+        CutsceneHandler.dialogueStarted += DisableMovement;
+        CutsceneHandler.dialogueEnded += EnableMovement;
+    }
     private void Update()
     {
         if (Input.GetButtonDown("Slash"))
