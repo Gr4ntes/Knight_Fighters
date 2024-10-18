@@ -10,6 +10,7 @@ public class PlayerHealth : MonoBehaviour
 
     public TMP_Text healthText;
     public Animator healthTextAnim;
+    public Animator playerAnim;
 
     private void Start()
     {
@@ -29,8 +30,15 @@ public class PlayerHealth : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            gameObject.SetActive(false);
+            PlayerMovement.playerDead?.Invoke();
+            playerAnim.SetBool("isDead", true);
         }
 
+    }
+
+    public void Dead()
+    {
+        print("died");
+        gameObject.SetActive(false);
     }
 }

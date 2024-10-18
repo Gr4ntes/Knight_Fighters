@@ -17,11 +17,15 @@ public class PlayerMovement : MonoBehaviour
 
     public Player_Combat player_Combat;
 
+    public delegate void PlayerDead();
+    public static PlayerDead playerDead;
+
     private void Start()
     {
         CutsceneHandler.cutSceneStarted += DisableMovement;
         CutsceneHandler.cutSceneEnded += EnableMovement;
         CutsceneHandler.cutSceneEnded += setCameraFollow;
+        playerDead += DisableMovement;
     }
     private void Update()
     {
