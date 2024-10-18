@@ -80,7 +80,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void DisableMovement()
     {
-        print("Movement disabled");
         isMovementDisabled = true;
         rb.velocity = Vector2.zero;
         anim.SetBool("isAttacking", false);
@@ -90,7 +89,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void EnableMovement()
     {
-        print("Movement enabled");
         isMovementDisabled = false;
     }
 
