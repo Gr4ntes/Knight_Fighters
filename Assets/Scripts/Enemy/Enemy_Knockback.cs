@@ -15,10 +15,17 @@ public class Enemy_Knockback : MonoBehaviour
 
     public void Knockback(Transform playerTransform, float knockbackForce, float knockbackTime, float stunTime)
     {
-        enemy_Movement.ChangeState(EnemyState.Knockback);
-        StartCoroutine(StunTimer(knockbackTime, stunTime));
-        Vector2 direction = (transform.position - playerTransform.position).normalized;
-        rb.velocity = direction * knockbackForce;
+        if (enemy_Movement.getState() != EnemyState.Dead)
+        {
+            enemy_Movement.ChangeState(EnemyState.Knockback);
+            StartCoroutine(StunTimer(knockbackTime, stunTime));
+            Vector2 direction = (transform.position - playerTransform.position).normalized;
+            rb.velocity = direction * knockbackForce;
+        }
+        else
+        {
+            rb.velocity = Vector2.zero;
+        }
     }
 
     IEnumerator StunTimer(float knockbackTime, float stunTime)

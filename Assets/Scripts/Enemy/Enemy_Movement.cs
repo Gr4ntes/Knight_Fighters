@@ -14,11 +14,11 @@ public class Enemy_Movement : MonoBehaviour
     private float attackCooldownTimer;
     private int facingDirection = -1;
     private EnemyState enemyState;
-    
+
     private Rigidbody2D rb;
     private Transform player;
     private Animator anim;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +30,7 @@ public class Enemy_Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (enemyState != EnemyState.Knockback)
+        if (enemyState != EnemyState.Knockback && enemyState != EnemyState.Dead)
         {
             CheckForPlayer();
             if (attackCooldownTimer > 0)
@@ -102,6 +102,8 @@ public class Enemy_Movement : MonoBehaviour
             anim.SetBool("isChasing", false);
         else if (enemyState == EnemyState.Attacking)
             anim.SetBool("isAttacking", false);
+        else if (enemyState == EnemyState.Dead)
+            anim.SetBool("isDead", false);
 
         enemyState = newState;
 
@@ -112,7 +114,15 @@ public class Enemy_Movement : MonoBehaviour
             anim.SetBool("isChasing", true);
         else if (enemyState == EnemyState.Attacking)
             anim.SetBool("isAttacking", true);
+        else if (enemyState == EnemyState.Dead)
+            anim.SetBool("isDead", true);
     }
+
+    public EnemyState getState()
+    {
+        return enemyState;
+    }
+
 
     private void OnDrawGizmosSelected()
     {
@@ -128,4 +138,5 @@ public enum EnemyState
     Chasing,
     Attacking,
     Knockback,
+    Dead
 }

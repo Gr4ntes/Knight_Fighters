@@ -6,6 +6,7 @@ public class Enemy_Health : MonoBehaviour
 {
     public int currentHealth;
     public int maxHealth;
+    public Enemy_Movement enemy_Movement;
 
     private void Start()
     {
@@ -23,7 +24,13 @@ public class Enemy_Health : MonoBehaviour
 
         else if (currentHealth <= 0)
         {
-            Destroy(gameObject);
+            enemy_Movement.ChangeState(EnemyState.Dead);
+            print("dead");
         }
+    }
+
+    public void Dead()
+    {
+        Destroy(gameObject);
     }
 }

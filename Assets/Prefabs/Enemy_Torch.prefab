@@ -230,6 +230,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 3
   maxHealth: 3
+  enemy_Movement: {fileID: 5902130670055462944}
 --- !u!114 &4555134959376193570
 MonoBehaviour:
   m_ObjectHideFlags: 0

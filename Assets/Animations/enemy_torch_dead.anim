@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: player_dead
+  m_Name: enemy_torch_dead
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -22,23 +22,23 @@ AnimationClip:
     curve:
     - time: 0
       value: {fileID: 1677018641, guid: e59a065f30fabb44484c6559d52f08e2, type: 3}
-    - time: 0.083333336
+    - time: 0.1
       value: {fileID: -1244480733, guid: e59a065f30fabb44484c6559d52f08e2, type: 3}
     - time: 0.2
       value: {fileID: 687199460, guid: e59a065f30fabb44484c6559d52f08e2, type: 3}
-    - time: 0.31666666
+    - time: 0.3
       value: {fileID: 481505459, guid: e59a065f30fabb44484c6559d52f08e2, type: 3}
     - time: 0.4
       value: {fileID: 1989105182, guid: e59a065f30fabb44484c6559d52f08e2, type: 3}
-    - time: 0.48333332
+    - time: 0.5
       value: {fileID: 1174133508, guid: e59a065f30fabb44484c6559d52f08e2, type: 3}
     - time: 0.6
       value: {fileID: 138648589, guid: e59a065f30fabb44484c6559d52f08e2, type: 3}
-    - time: 0.68333334
+    - time: 0.7
       value: {fileID: -1637509710, guid: e59a065f30fabb44484c6559d52f08e2, type: 3}
     - time: 0.8
       value: {fileID: -246219159, guid: e59a065f30fabb44484c6559d52f08e2, type: 3}
-    - time: 0.8833333
+    - time: 0.9
       value: {fileID: 1345866664, guid: e59a065f30fabb44484c6559d52f08e2, type: 3}
     - time: 1
       value: {fileID: -114597927, guid: e59a065f30fabb44484c6559d52f08e2, type: 3}
