@@ -25,6 +25,7 @@ public class Enemy_Knockback : MonoBehaviour
         else
         {
             rb.velocity = Vector2.zero;
+            rb.simulated = false;
         }
     }
 
