@@ -2030,7 +2030,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc670608d0815884a8ffba2387ea9c96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 1
+  duration: 3
   targetSize: 2
   target: {fileID: 1415560565}
   offset: {x: 0, y: -1, z: -10}
