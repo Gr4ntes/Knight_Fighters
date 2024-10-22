@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2369ccca8738454408cb1d00e0dafbb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 3
   facingDirection: 1
   vCam: {fileID: 0}
   rb: {fileID: 7343669498377536122}

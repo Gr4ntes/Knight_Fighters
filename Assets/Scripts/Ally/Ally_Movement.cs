@@ -29,6 +29,7 @@ public class Ally_Movement : MonoBehaviour
 
     private void Update()
     {
+        print(allyState);
         if (allyState != AllyState.Knockback && allyState != AllyState.Dead)
         {
             CheckForPlayer();
@@ -61,7 +62,7 @@ public class Ally_Movement : MonoBehaviour
     {
         // Exit the current animation
         if (allyState == AllyState.Disabled)
-            anim.SetBool("isDisabled", false);
+            anim.SetBool("isIdle", false);
         else if (allyState == AllyState.Idle)
             anim.SetBool("isIdle", false);
         else if (allyState == AllyState.Following)
@@ -75,7 +76,7 @@ public class Ally_Movement : MonoBehaviour
 
         // Set the new animation
         if (allyState == AllyState.Disabled)
-            anim.SetBool("isDisabled", true);
+            anim.SetBool("isIdle", true);
         else if (allyState == AllyState.Idle)
             anim.SetBool("isIdle", true);
         else if (allyState == AllyState.Following)
