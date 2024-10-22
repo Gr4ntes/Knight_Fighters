@@ -6,18 +6,22 @@ using UnityEngine;
 public class Ally_Movement : MonoBehaviour
 {
     public float speed;
-    private int facingDirection = -1;
+    private int facingDirection = 1;
     private AllyState allyState;
+    private float attackCooldownTimer;
 
     public int damage = 1;
     public float DetectRange = 3;
-    public float AttackRange = 2;
+    public float enemyDetectRange = 4;
+    public float attackRange = 2;
+    public float attackCooldown = 2;
+    
     public Transform detectionPoint;
     public LayerMask playerLayer;
     public LayerMask enemyLayer;
 
     private Rigidbody2D rb;
-    private Transform player;
+    private Transform followTarget;
     private Animator anim;
 
     void Start()
@@ -29,15 +33,28 @@ public class Ally_Movement : MonoBehaviour
 
     private void Update()
     {
-        print(allyState);
         if (allyState != AllyState.Knockback && allyState != AllyState.Dead)
         {
-            CheckForPlayer();
+            CheckForEnemy();
+            if (allyState != AllyState.Chasing && allyState != AllyState.Attacking)
+            {
+                CheckForPlayer();
+            } 
 
-            if (allyState == AllyState.Following)
+            if (attackCooldownTimer > 0)
+            {
+                attackCooldownTimer -= Time.deltaTime;
+            }
+
+            if (allyState == AllyState.Following || allyState == AllyState.Chasing)
             {
                 Follow();
             }
+            else if (allyState == AllyState.Attacking)
+            {
+                rb.velocity = Vector2.zero;
+            }
+            print(allyState);
         }
     }
 
@@ -49,12 +66,12 @@ public class Ally_Movement : MonoBehaviour
 
     void Follow()
     {
-        if (player.position.x > transform.position.x && facingDirection == -1 ||
-                player.position.x < transform.position.x && facingDirection == 1)
+        if (followTarget.position.x > transform.position.x && facingDirection == -1 ||
+                followTarget.position.x < transform.position.x && facingDirection == 1)
         {
             Flip();
         }
-        Vector2 direction = (player.position - transform.position).normalized;
+        Vector2 direction = (followTarget.position - transform.position).normalized;
         rb.velocity = direction * speed;
     }
 
@@ -65,7 +82,7 @@ public class Ally_Movement : MonoBehaviour
             anim.SetBool("isIdle", false);
         else if (allyState == AllyState.Idle)
             anim.SetBool("isIdle", false);
-        else if (allyState == AllyState.Following)
+        else if (allyState == AllyState.Following || allyState == AllyState.Chasing)
             anim.SetBool("isFollowing", false);
         else if (allyState == AllyState.Attacking)
             anim.SetBool("isAttacking", false);
@@ -79,7 +96,7 @@ public class Ally_Movement : MonoBehaviour
             anim.SetBool("isIdle", true);
         else if (allyState == AllyState.Idle)
             anim.SetBool("isIdle", true);
-        else if (allyState == AllyState.Following)
+        else if (allyState == AllyState.Following || allyState == AllyState.Chasing)
             anim.SetBool("isFollowing", true);
         else if (allyState == AllyState.Attacking)
             anim.SetBool("isAttacking", true);
@@ -93,15 +110,42 @@ public class Ally_Movement : MonoBehaviour
 
         if (hits.Length > 0)
         {
-            player = hits[0].transform;
+            followTarget = hits[0].transform;
 
             rb.velocity = Vector2.zero;
             ChangeState(AllyState.Idle);
         }
-        else if (hits.Length == 0 &&  player != null && allyState != AllyState.Disabled)
+        else if (hits.Length == 0 &&  followTarget != null && allyState != AllyState.Disabled)
         {
             ChangeState(AllyState.Following);
         }
+    }
+
+    private void CheckForEnemy()
+    {
+        Collider2D[] hits = Physics2D.OverlapCircleAll(detectionPoint.position, enemyDetectRange, enemyLayer);
+
+        if (hits.Length > 0)
+        {
+            followTarget = hits[0].transform;
+            if (Vector2.Distance(transform.position, followTarget.position) < attackRange && attackCooldownTimer <= 0)
+            {
+                attackCooldownTimer = attackCooldown;
+                ChangeState(AllyState.Attacking);
+            }
+            else if (Vector2.Distance(transform.position, followTarget.position) > attackRange && allyState != AllyState.Attacking)
+            {
+                ChangeState(AllyState.Chasing);
+            }
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(detectionPoint.position, DetectRange);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }
 
@@ -110,6 +154,7 @@ public enum AllyState
     Disabled,
     Idle,
     Following,
+    Chasing,
     Attacking,
     Knockback,
     Dead

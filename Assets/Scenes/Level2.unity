@@ -497,6 +497,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 708a143d22140bf42ad53c06883f2031, type: 3}
+--- !u!1 &1622044945
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1622044946}
+  m_Layer: 0
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1622044946
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622044945}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.61, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2007317800}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1772976672
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -584,6 +615,7 @@ GameObject:
   - component: {fileID: 2007317797}
   - component: {fileID: 2007317796}
   - component: {fileID: 2007317801}
+  - component: {fileID: 2007317802}
   m_Layer: 0
   m_Name: Warrior_Yellow_0
   m_TagString: Untagged
@@ -735,11 +767,12 @@ Transform:
   m_GameObject: {fileID: 2007317795}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.919327, y: 9.849479, z: 0}
-  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_LocalPosition: {x: -17.04, y: 10.41, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 203325709}
+  - {fileID: 1622044946}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2007317801
@@ -757,11 +790,34 @@ MonoBehaviour:
   speed: 3
   damage: 1
   DetectRange: 2
-  AttackRange: 2
+  enemyDetectRange: 4
+  attackRange: 1.2
+  attackCooldown: 2
   detectionPoint: {fileID: 203325709}
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
+--- !u!114 &2007317802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007317795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f44a8762a4f9544a92de1e6e43a8d31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  attackPoint: {fileID: 1622044946}
+  weaponRange: 1
+  knockbackForce: 10
+  knockbackTime: 0.15
+  stunTime: 0.3
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
