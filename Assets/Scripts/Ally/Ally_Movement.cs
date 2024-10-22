@@ -28,12 +28,23 @@ public class Ally_Movement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        ChangeState(AllyState.Disabled);
+        ChangeState(AllyState.Idle);
+        attackCooldown = Random.Range(1f, 2f);
+        print(attackCooldown);
     }
 
     private void Update()
     {
-        if (allyState != AllyState.Knockback && allyState != AllyState.Dead)
+        if (attackCooldownTimer > 0)
+        {
+            attackCooldownTimer -= Time.deltaTime;
+        }
+        else
+        {
+            ChangeState(AllyState.Idle);
+        }
+
+        if (allyState != AllyState.Knockback && allyState != AllyState.Dead && allyState != AllyState.Cooldown)
         {
             CheckForEnemy();
             if (allyState != AllyState.Chasing && allyState != AllyState.Attacking)
@@ -46,15 +57,14 @@ public class Ally_Movement : MonoBehaviour
                 attackCooldownTimer -= Time.deltaTime;
             }
 
-            if (allyState == AllyState.Following || allyState == AllyState.Chasing)
-            {
-                Follow();
-            }
-            else if (allyState == AllyState.Attacking)
+            if (allyState == AllyState.Attacking || attackCooldownTimer > 0 || followTarget == null)
             {
                 rb.velocity = Vector2.zero;
             }
-            print(allyState);
+            else if (allyState == AllyState.Following || allyState == AllyState.Chasing)
+            {
+                Follow();
+            } 
         }
     }
 
@@ -73,14 +83,13 @@ public class Ally_Movement : MonoBehaviour
         }
         Vector2 direction = (followTarget.position - transform.position).normalized;
         rb.velocity = direction * speed;
+        
     }
 
     public void ChangeState(AllyState newState)
     {
         // Exit the current animation
-        if (allyState == AllyState.Disabled)
-            anim.SetBool("isIdle", false);
-        else if (allyState == AllyState.Idle)
+        if (allyState == AllyState.Idle)
             anim.SetBool("isIdle", false);
         else if (allyState == AllyState.Following || allyState == AllyState.Chasing)
             anim.SetBool("isFollowing", false);
@@ -92,9 +101,7 @@ public class Ally_Movement : MonoBehaviour
         allyState = newState;
 
         // Set the new animation
-        if (allyState == AllyState.Disabled)
-            anim.SetBool("isIdle", true);
-        else if (allyState == AllyState.Idle)
+        if (allyState == AllyState.Idle)
             anim.SetBool("isIdle", true);
         else if (allyState == AllyState.Following || allyState == AllyState.Chasing)
             anim.SetBool("isFollowing", true);
@@ -115,7 +122,7 @@ public class Ally_Movement : MonoBehaviour
             rb.velocity = Vector2.zero;
             ChangeState(AllyState.Idle);
         }
-        else if (hits.Length == 0 &&  followTarget != null && allyState != AllyState.Disabled)
+        else if (hits.Length == 0 &&  followTarget != null)
         {
             ChangeState(AllyState.Following);
         }
@@ -131,6 +138,8 @@ public class Ally_Movement : MonoBehaviour
             if (Vector2.Distance(transform.position, followTarget.position) < attackRange && attackCooldownTimer <= 0)
             {
                 attackCooldownTimer = attackCooldown;
+                attackCooldown = Random.Range(1f, 2f);
+                print(attackCooldown);
                 ChangeState(AllyState.Attacking);
             }
             else if (Vector2.Distance(transform.position, followTarget.position) > attackRange && allyState != AllyState.Attacking)
@@ -140,22 +149,16 @@ public class Ally_Movement : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(detectionPoint.position, DetectRange);
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
-    }
+    
 }
 
 public enum AllyState
 {
-    Disabled,
     Idle,
     Following,
     Chasing,
     Attacking,
     Knockback,
+    Cooldown,
     Dead
 }

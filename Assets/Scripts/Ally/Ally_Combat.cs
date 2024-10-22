@@ -11,6 +11,7 @@ public class Ally_Combat : MonoBehaviour
     public float knockbackTime;
     public float stunTime;
     public LayerMask enemyLayer;
+    public Ally_Movement ally_Movement;
 
     public void Attack()
     {
@@ -21,6 +22,7 @@ public class Ally_Combat : MonoBehaviour
             print("hit");
             hits[0].GetComponent<Enemy_Health>().ChangeHealth(-damage);
             hits[0].GetComponent<Enemy_Knockback>().Knockback(transform, knockbackForce, knockbackTime, stunTime);
+            ally_Movement.ChangeState(AllyState.Cooldown);
         }
     }
 }

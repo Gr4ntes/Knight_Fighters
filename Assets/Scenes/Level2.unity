@@ -542,11 +542,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3326013545760350036, guid: a1143d14f8870864cb072df6b785b21d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -16.89
+      value: -16.24
       objectReference: {fileID: 0}
     - target: {fileID: 3326013545760350036, guid: a1143d14f8870864cb072df6b785b21d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 19.38
+      value: 19.72
       objectReference: {fileID: 0}
     - target: {fileID: 3326013545760350036, guid: a1143d14f8870864cb072df6b785b21d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -616,7 +616,8 @@ GameObject:
   - component: {fileID: 2007317796}
   - component: {fileID: 2007317801}
   - component: {fileID: 2007317802}
-  m_Layer: 0
+  - component: {fileID: 2007317803}
+  m_Layer: 9
   m_Name: Warrior_Yellow_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -821,6 +822,22 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
+  ally_Movement: {fileID: 2007317801}
+--- !u!114 &2007317803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007317795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d4de19d779feed4496960f9c8978346, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 3
+  maxHealth: 3
+  ally_Movement: {fileID: 2007317801}
 --- !u!1001 &2041804899
 PrefabInstance:
   m_ObjectHideFlags: 0

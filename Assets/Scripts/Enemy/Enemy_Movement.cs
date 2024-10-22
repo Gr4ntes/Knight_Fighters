@@ -10,13 +10,14 @@ public class Enemy_Movement : MonoBehaviour
     public float playerDetectRange = 3;
     public Transform detectionPoint;
     public LayerMask playerLayer;
+    public LayerMask alliesLayer;
 
     private float attackCooldownTimer;
     private int facingDirection = -1;
     private EnemyState enemyState;
 
     private Rigidbody2D rb;
-    private Transform player;
+    private Transform attackTarget;
     private Animator anim;
 
     // Start is called before the first frame update
@@ -25,12 +26,22 @@ public class Enemy_Movement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         ChangeState(EnemyState.Idle);
+        attackCooldown = Random.Range(1f, 2f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (enemyState != EnemyState.Knockback && enemyState != EnemyState.Dead)
+        if (attackCooldownTimer > 0)
+        {
+            attackCooldownTimer -= Time.deltaTime;
+        }
+        else if (attackCooldown == 0 && enemyState != EnemyState.Dead)
+        {
+            ChangeState(EnemyState.Idle);
+        }
+
+        if (enemyState != EnemyState.Knockback && enemyState != EnemyState.Dead && enemyState != EnemyState.Cooldown)
         {
             CheckForPlayer();
             if (attackCooldownTimer > 0)
@@ -53,12 +64,12 @@ public class Enemy_Movement : MonoBehaviour
 
     void Chase()
     {
-        if (player.position.x > transform.position.x && facingDirection == -1 ||
-                player.position.x < transform.position.x && facingDirection == 1)
+        if (attackTarget.position.x > transform.position.x && facingDirection == -1 ||
+                attackTarget.position.x < transform.position.x && facingDirection == 1)
         {
             Flip();
         }
-        Vector2 direction = (player.position - transform.position).normalized;
+        Vector2 direction = (attackTarget.position - transform.position).normalized;
         rb.velocity = direction * speed;
     }
 
@@ -70,18 +81,23 @@ public class Enemy_Movement : MonoBehaviour
 
     private void CheckForPlayer()
     {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(detectionPoint.position, playerDetectRange, playerLayer);
+        Collider2D[] hits_player = Physics2D.OverlapCircleAll(detectionPoint.position, playerDetectRange, playerLayer);
+        Collider2D[] hits_allies = Physics2D.OverlapCircleAll(detectionPoint.position, playerDetectRange, alliesLayer);
 
-        if (hits.Length > 0)
+        if (hits_player.Length > 0 || hits_allies.Length > 0)
         {
-            player = hits[0].transform;
+            if (hits_allies.Length > 0) 
+                attackTarget = hits_allies[0].transform;
+            else if (hits_player.Length > 0)
+                attackTarget = hits_player[0].transform;
 
-            if (Vector2.Distance(transform.position, player.position) < attackRange && attackCooldownTimer <= 0)
+            if (Vector2.Distance(transform.position, attackTarget.position) < attackRange && attackCooldownTimer <= 0)
             {
                 attackCooldownTimer = attackCooldown;
+                attackCooldown = Random.Range(1f, 2f);
                 ChangeState(EnemyState.Attacking);
             }
-            else if (Vector2.Distance(transform.position, player.position) > attackRange && enemyState != EnemyState.Attacking)
+            else if (Vector2.Distance(transform.position, attackTarget.position) > attackRange && enemyState != EnemyState.Attacking)
             {
                 ChangeState(EnemyState.Chasing);
             }
@@ -122,13 +138,6 @@ public class Enemy_Movement : MonoBehaviour
     {
         return enemyState;
     }
-
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(detectionPoint.position, playerDetectRange);
-    }
 }
 
 
@@ -138,5 +147,6 @@ public enum EnemyState
     Chasing,
     Attacking,
     Knockback,
+    Cooldown,
     Dead
 }

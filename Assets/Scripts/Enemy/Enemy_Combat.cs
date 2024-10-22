@@ -10,6 +10,7 @@ public class Enemy_Combat : MonoBehaviour
     public float knockbackForce;
     public float stunTime;
     public LayerMask playerLayer;
+    public Enemy_Movement enemy_Movement;
 
     public void Attack()
     {
@@ -19,6 +20,8 @@ public class Enemy_Combat : MonoBehaviour
         {
             hits[0].GetComponent<PlayerHealth>().ChangeHealth(-damage);
             hits[0].GetComponent<PlayerMovement>().Knockback(transform, knockbackForce, stunTime);
+            enemy_Movement.ChangeState(EnemyState.Cooldown);
         }
+
     }
 }
