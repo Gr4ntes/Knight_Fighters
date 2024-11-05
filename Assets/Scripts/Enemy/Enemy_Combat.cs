@@ -30,7 +30,7 @@ public class Enemy_Combat : MonoBehaviour
         {
             print("Attacked ally");
             ally_hits[0].GetComponent<Ally_Health>().ChangeHealth(-damage);
-            //hits[0].GetComponent<Ally_Movement>().Knockback(transform, knockbackForce, stunTime);
+            ally_hits[0].GetComponent<Ally_Knockback>().Knockback(transform, knockbackForce, stunTime);
             enemy_Movement.ChangeState(EnemyState.Cooldown);
         }
     }

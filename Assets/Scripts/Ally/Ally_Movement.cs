@@ -111,6 +111,11 @@ public class Ally_Movement : MonoBehaviour
             anim.SetBool("isDead", true);
     }
 
+    public AllyState getState()
+    {
+        return allyState;
+    }
+
     private void CheckForPlayer()
     {
         Collider2D[] hits = Physics2D.OverlapCircleAll(detectionPoint.position, DetectRange, playerLayer);
