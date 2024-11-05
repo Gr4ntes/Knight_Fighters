@@ -44,10 +44,6 @@ public class Enemy_Movement : MonoBehaviour
         if (enemyState != EnemyState.Knockback && enemyState != EnemyState.Dead && enemyState != EnemyState.Cooldown)
         {
             CheckForPlayer();
-            if (attackCooldownTimer > 0)
-            {
-                attackCooldownTimer -= Time.deltaTime;
-            }
         
         
             if (enemyState == EnemyState.Chasing)

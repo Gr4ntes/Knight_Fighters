@@ -10,6 +10,7 @@ public class Enemy_Combat : MonoBehaviour
     public float knockbackForce;
     public float stunTime;
     public LayerMask playerLayer;
+    public LayerMask allyLayer;
     public Enemy_Movement enemy_Movement;
 
     public void Attack()
@@ -23,5 +24,14 @@ public class Enemy_Combat : MonoBehaviour
             enemy_Movement.ChangeState(EnemyState.Cooldown);
         }
 
+        Collider2D[] ally_hits = Physics2D.OverlapCircleAll(attackPoint.position, weaponRange, allyLayer);
+
+        if (ally_hits.Length > 0)
+        {
+            print("Attacked ally");
+            ally_hits[0].GetComponent<Ally_Health>().ChangeHealth(-damage);
+            //hits[0].GetComponent<Ally_Movement>().Knockback(transform, knockbackForce, stunTime);
+            enemy_Movement.ChangeState(EnemyState.Cooldown);
+        }
     }
 }

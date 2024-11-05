@@ -175,6 +175,9 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
+  allyLayer:
+    serializedVersion: 2
+    m_Bits: 512
   enemy_Movement: {fileID: 5902130670055462944}
 --- !u!114 &5902130670055462944
 MonoBehaviour:

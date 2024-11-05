@@ -39,7 +39,7 @@ public class Ally_Movement : MonoBehaviour
         {
             attackCooldownTimer -= Time.deltaTime;
         }
-        else
+        else if ( allyState != AllyState.Dead )
         {
             ChangeState(AllyState.Idle);
         }
